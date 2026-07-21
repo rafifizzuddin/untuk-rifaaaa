@@ -274,23 +274,21 @@ function ketik(teks, elementId, kecepatan = 40){
     let i = 0;
     const elemen = document.getElementById(elementId);
 
-    elemen.innerHTML = "";
+    elemen.textContent = "";
 
-    function tulis(){
+    const timer = setInterval(()=>{
 
-        if(i < teks.length){
+        elemen.textContent += teks[i];
 
-            elemen.innerHTML += teks.charAt(i);
+        i++;
 
-            i++;
+        if(i >= teks.length){
 
-            setTimeout(tulis, kecepatan);
+            clearInterval(timer);
 
         }
 
-    }
-
-    tulis();
+    },kecepatan);
 
 }
 

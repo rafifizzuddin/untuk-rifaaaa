@@ -225,6 +225,22 @@ untuk melihat sesuatu yang sudah apippp siapkan.
 
 <script>
 
+async function masukFullscreen(){
+
+    const el = document.documentElement;
+
+    if(el.requestFullscreen){
+
+        await el.requestFullscreen();
+
+    }else if(el.webkitRequestFullscreen){
+
+        el.webkitRequestFullscreen();
+
+    }
+
+}
+
 let soal=[
 {
 q:"Kapan tanggal kita jadian?",
@@ -292,9 +308,14 @@ function ketik(teks, elementId, kecepatan = 40){
 
 }
 
-function start(){
-buatHati();
-tampilSoal();
+async function start(){
+
+    await masukFullscreen();
+
+    buatHati();
+
+    tampilSoal();
+
 }
 
 function tampilSoal(){

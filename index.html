@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Rifaaa ❤️</title>
+<title>Untuk Rifaaa 🤍</title>
 
 <style>
 *{
@@ -125,6 +125,73 @@ transform:translateY(110vh);
 opacity:0;
 }
 }
+
+/* ini buat revisi pertama */
+
+.bukti-card{
+
+animation:fade .8s;
+
+}
+
+.bukti{
+
+width:100%;
+max-width:330px;
+
+border-radius:18px;
+
+margin:20px auto;
+
+display:block;
+
+box-shadow:0 10px 35px rgba(0,0,0,.35);
+
+animation:zoom .8s;
+
+}
+
+.bukti:hover{
+    transform:scale(1.03);
+    transition:.3s;
+}
+
+@keyframes zoom{
+
+from{
+
+transform:scale(.6);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+.bukti-card h2{
+
+margin-bottom:15px;
+
+}
+
+.bukti-card p{
+
+margin-top:20px;
+
+line-height:1.8;
+
+font-size:18px;
+
+}
+
 </style>
 
 </head>
@@ -134,7 +201,7 @@ opacity:0;
 
 <div class="card" id="card">
 
-<h1>❤️ Hai haii rifaaaa ❤️</h1>
+<h1>🤍 Hai haii rifaaaa 🤍</h1>
 
 <p>
 apippp tahu mungkin ini cuma sebuah website sederhana...
@@ -156,32 +223,72 @@ untuk melihat sesuatu yang sudah apippp siapkan.
 
 let soal=[
 {
-q:"Kapan tanggal kita jadian? (contoh: 14 November 2024)",
-a:"10 desember 2025"
+q:"Kapan tanggal kita jadian?",
+a:"10 desember 2025",
+img:"images/jadian.jpg",
+judul:"10 Desember 2025 🤍",
+cerita:"Hari di mana semuanya dimulai. Dari sekian banyak hari yang pernah kita lewati, hari itu selalu punya tempat spesial di hati apipp."
 },
+
 {
-q:"Siapa yang pertama kali bilang sayang? (apipp atau rifaa)",
-a:"rifaa"
+q:"Siapa yang pertama kali bilang sayang? (aku atau kamu)",
+a:"aku",
+img:"images/sayang.jpg",
+judul:"Masih ingat? 🤭",
+cerita:"Ternyata rifaa yang duluan bilang sayang. Untung waktu itu apipp ndaa sia siain kesempatan. 😂🤍"
 },
+
 {
 q:"Apa makanan favorit apipp?",
-a:"mie ayam"
+a:"mie ayam",
+img:"images/mieayam.jpg",
+judul:"Mie Ayam 🍜",
+cerita:"Entah kenapa setiap makan mie ayam apipp selalu keinget kamu."
 },
+
 {
-q:"Siapa yang paling sering ngambek? 😆(apipp atau rifaa)",
-a:"rifaa"
+q:"Siapa yang paling sering ngambek? (aku atau kamu)",
+a:"kamu",
+img:"images/ngambek.png",
+judul:"Hehe 😆",
+cerita:"Walaupun sering ngambek, rifaaa tetap lucu kok, apalagi kalau lagi cemburu."
 },
+
 {
-q:"Apa panggilan yang selalu ingin aku pakai buat kamu? (g nya 2 hihii)",
-a:"sayangg"
-},
-{
-q:"Siapa yang biasanya minta maaf duluan? (apipp atau rifaa)",
-a:"apipp"
+q:"Siapa yang biasanya minta maaf duluan? (aku atau kamu)",
+a:"kamu",
+img:"images/maaf.jpg",
+judul:"Gapapa 🤍",
+cerita:"Karena bagiku mempertahankan kamu jauh lebih penting daripada mempertahankan ego."
 }
 ];
 
 let index=0;
+
+function ketik(teks, elementId, kecepatan = 40){
+
+    let i = 0;
+    const elemen = document.getElementById(elementId);
+
+    elemen.innerHTML = "";
+
+    function tulis(){
+
+        if(i < teks.length){
+
+            elemen.innerHTML += teks.charAt(i);
+
+            i++;
+
+            setTimeout(tulis, kecepatan);
+
+        }
+
+    }
+
+    tulis();
+
+}
 
 function start(){
 buatHati();
@@ -191,16 +298,46 @@ tampilSoal();
 function tampilSoal(){
 
 document.getElementById("card").innerHTML=`
-<h2>${soal[index].q}</h2>
+
+<h2 id="pertanyaan"></h2>
 
 <input id="jawaban" placeholder="Tulis jawaban di sini">
 
 <div id="message"></div>
 
 <button onclick="cek()">Jawab</button>
+
 `;
 
+ketik(soal[index].q,"pertanyaan",35);
+
 }
+
+// ini revisi pertama //
+
+function tampilBukti(){
+
+document.getElementById("card").innerHTML=`
+
+<div class="bukti-card">
+
+<h2>${soal[index].judul}</h2>
+
+<img src="${soal[index].img}" class="bukti">
+
+<p id="cerita"></p>
+
+<button onclick="lanjut()">Lanjut ➜</button>
+
+</div>
+
+`;
+
+ketik(soal[index].cerita,"cerita",35);
+
+}
+
+// selesai revisi pertama //
 
 function cek(){
 
@@ -210,43 +347,23 @@ let pesan=document.getElementById("message");
 
 if(input==soal[index].a){
 
-pesan.innerHTML="🥹 Benar... ternyata kamu masih ingat.";
+    pesan.innerHTML="🥹 Benar... ternyata kamu masih ingat.";
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
-index++;
+        tampilBukti();
 
-if(index>=soal.length){
-
-countdown();
+    },1200);
 
 }else{
 
-tampilSoal();
+    pesan.innerHTML="😂 Hehe... kayaknya salah deh. Tapi gapapa, tetap lihat kenangannya ya 🤍";
 
-}
+    setTimeout(()=>{
 
-},1500);
+        tampilBukti();
 
-}else{
-
-pesan.innerHTML="😂 Hehe... kayaknya salah deh. Tapi gapapa, lanjut ya ❤️";
-
-setTimeout(()=>{
-
-index++;
-
-if(index>=soal.length){
-
-countdown();
-
-}else{
-
-tampilSoal();
-
-}
-
-},1800);
+    },1800);
 
 }
 
@@ -309,9 +426,9 @@ Entah bagaimana akhirnya nanti...
 
 Aku cuma ingin bilang kalau setiap momen di video tadi akan selalu menjadi kenangan yang indah.
 
-Semoga kamu selalu bahagia.
+Semoga rifaa selalu bahagia.
 
-❤️
+🤍
 
 </p>
 
@@ -348,6 +465,23 @@ h.remove();
 },8000);
 
 },250);
+
+}
+
+// fungsi untuk revisi pertama //
+function lanjut(){
+
+index++;
+
+if(index >= soal.length){
+
+countdown();
+
+}else{
+
+tampilSoal();
+
+}
 
 }
 
